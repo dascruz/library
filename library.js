@@ -5,10 +5,10 @@ function Book(title, author, pages, read) {
   this.author = author;
   this.pages = pages;
   this.read = read;
-  this.info = function() {
+  this.info = function () {
     readText = this.read ? "read" : "not read yet";
     return `${this.title} by ${this.author}, ${this.pages} pages, ${readText}`;
-  }
+  };
 }
 
 function addBookToLibrary() {
