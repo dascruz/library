@@ -1,4 +1,6 @@
 let myLibrary = [];
+const addBookButton = document.querySelector("#add-book");
+const modal = document.querySelector("dialog");
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -18,3 +20,6 @@ function addBookToLibrary() {
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", "295", false);
 console.log(theHobbit.info());
 
+addBookButton.addEventListener("click", () => {
+  modal.show();
+})
