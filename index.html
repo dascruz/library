@@ -10,33 +10,91 @@
     <link href="/style.css" rel="stylesheet" />
     <script src="library.js" defer></script>
   </head>
-  <body class="antialiased text-slate-50">
-    <header class="flex justify-center items-center bg-slate-600 p-6">
-      <div class="flex items-center justify-between max-w-5xl w-full">
+  <body class="flex h-screen flex-col text-slate-50 antialiased">
+    <header class="flex items-center justify-center bg-slate-600 p-6">
+      <div class="flex w-full max-w-5xl items-center justify-between">
         <h1 class="text-3xl font-bold">My Library</h1>
-        <button id="add-book" class="bg-slate-400 p-4 transition-all rounded font-bold hover:bg-white hover:text-slate-700">Add book</button>
+        <button
+          id="add-book"
+          class="rounded bg-slate-400 p-4 font-bold transition-all hover:bg-white hover:text-slate-700"
+        >
+          Add book
+        </button>
       </div>
     </header>
-    <main class="bg-slate-50 p-6 grid grid-cols-3">
-      <dialog class="border-2 rounded">
-        <form action="" class="flex gap-6 flex-col">
+    <main class="flex-1 bg-slate-50 p-6 text-slate-600">
+      <dialog class="rounded border-2 p-8 drop-shadow backdrop-blur">
+        <form
+          method="dialog"
+          class="flex flex-col items-center gap-6"
+          onsubmit="addBookToLibrary()"
+        >
+          <div class="text-xl font-bold">Add a new book</div>
           <div class="relative z-0">
-            <input type="text" id="title" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " />
-            <label for="title" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-slate-600 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+            <input
+              type="text"
+              id="title"
+              class="peer block w-full appearance-none border-0 border-b-2 border-slate-300 bg-transparent py-2.5 px-0 text-sm text-slate-900 focus:border-slate-600 focus:outline-none focus:ring-0 dark:border-slate-600 dark:text-white dark:focus:border-slate-500"
+              placeholder=" "
+            />
+            <label
+              for="title"
+              class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-slate-600 dark:text-slate-400 peer-focus:dark:text-slate-500"
+              >Title</label
+            >
           </div>
           <div class="relative z-0">
-            <input type="text" id="author" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " />
-            <label for="author" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-slate-600 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Author</label>
+            <input
+              type="text"
+              id="author"
+              class="peer block w-full appearance-none border-0 border-b-2 border-slate-300 bg-transparent py-2.5 px-0 text-sm text-slate-900 focus:border-slate-600 focus:outline-none focus:ring-0 dark:border-slate-600 dark:text-white dark:focus:border-slate-500"
+              placeholder=" "
+            />
+            <label
+              for="author"
+              class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-slate-600 dark:text-slate-400 peer-focus:dark:text-slate-500"
+              >Author</label
+            >
           </div>
           <div class="relative z-0">
-            <input type="text" id="pages" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-slate-500 focus:outline-none focus:ring-0 focus:border-slate-600 peer" placeholder=" " />
-            <label for="pages" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-slate-600 peer-focus:dark:text-slate-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Pages</label>
+            <input
+              type="number"
+              id="pages"
+              class="peer block w-full appearance-none border-0 border-b-2 border-slate-300 bg-transparent py-2.5 px-0 text-sm text-slate-900 focus:border-slate-600 focus:outline-none focus:ring-0 dark:border-slate-600 dark:text-white dark:focus:border-slate-500"
+              placeholder=" "
+            />
+            <label
+              for="pages"
+              class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-slate-600 dark:text-slate-400 peer-focus:dark:text-slate-500"
+              >Pages</label
+            >
+          </div>
+          <div class="mb-4 flex items-center">
+            <input
+              id="read"
+              type="checkbox"
+              value=""
+              class="h-4 w-4 rounded border-slate-300 bg-slate-100 text-slate-600 accent-slate-500 focus:ring-2 focus:ring-slate-500 dark:border-slate-600 dark:bg-slate-700 dark:ring-offset-slate-800 dark:focus:ring-slate-600"
+            />
+            <label
+              for="read"
+              class="ml-2 text-sm font-medium text-slate-900 dark:text-slate-300"
+              >Have you read it?</label
+            >
+          </div>
+          <div>
+            <input
+              type="submit"
+              value="Add to library"
+              class="rounded bg-slate-300 p-4 font-bold text-slate-700 transition-all hover:bg-slate-400 hover:text-slate-100"
+            />
           </div>
         </form>
       </dialog>
+      <div id="book-grid" class="grid grid-cols-3 grid-rows-2 gap-4"></div>
     </main>
     <footer class="mt-auto flex items-center justify-center bg-slate-600 p-6">
-      <span class="font-bold">Made with ☕</span>
+      <div class="font-bold">Made with ☕</div>
     </footer>
   </body>
 </html>
